@@ -1,0 +1,22 @@
+#create and use database
+create database office;
+use office;
+
+#create empl table
+CREATE TABLE employee (id INT, name STRING, dept STRING, yoj INT, salary INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' TBLPROPERTIES("skip.header.line.count"="1");
+
+#load data into empl table
+LOAD DATA LOCAL INPATH '/root/EmpData.csv' INTO TABLE employee;
+
+#run queries in emp table
+SELECT * FROM employee;
+SELECT COUNT(*) FROM employee;
+
+#export to HDFS directory
+INSERT OVERWRITE DIRECTORY '/user/ketaki/HiveOutput' ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM emp.employee;
+
+#export to local directory
+INSERT OVERWRITE LOCAL DIRECTORY '/root/HiveOutput' ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM emp.employee;
