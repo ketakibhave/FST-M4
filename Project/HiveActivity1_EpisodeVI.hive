@@ -1,0 +1,7 @@
+#create episodeIV table
+CREATE TABLE episodeIV (name STRING, line STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' TBLPROPERTIES("skip.header.line.count"="2");
+
+#load data into empl table
+LOAD DATA LOCAL INPATH '/root/inputs/episodeIV_dialouges.txt' INTO TABLE episodeIV;
+SELECT name, COUNT(name) AS no_of_lines FROM episodeIV GROUP BY name ORDER BY no_of_lines;
